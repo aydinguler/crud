@@ -4,7 +4,19 @@ project(crud)
 set(CMAKE_CXX_STANDARD 11)
 
 add_library(crud-lib
-        )
+        src/controller/StaticController.hpp
+        
+        
+        src/dto/PageDto.hpp
+        src/dto/StatusDto.hpp
+        
+        
+        
+        src/AppComponent.hpp
+        src/DatabaseComponent.hpp
+        src/SwaggerComponent.hpp
+        src/ErrorHandler.cpp
+        src/ErrorHandler.hpp "src/controller/WorkController.hpp" "src/db/WorkDb.hpp" "src/dto/WorkDto.hpp" "src/service/WorkService.hpp" "src/service/WorkService.cpp" "test/WorkControllerTest.hpp" "test/WorkControllerTest.cpp")
 
 ## include directories
 
@@ -55,16 +67,16 @@ endif()
 
 ## add executables
 
-add_executable(crud-exe src/App.cpp       )
+add_executable(crud-exe src/App.cpp "src/controller/WorkController.hpp" "src/db/WorkDb.hpp" "src/dto/WorkDto.hpp" "src/service/WorkService.hpp" "src/service/WorkService.cpp" "test/WorkControllerTest.hpp" "test/WorkControllerTest.cpp")
 target_link_libraries(crud-exe crud-lib)
 
 add_executable(crud-test
+        test/tests.cpp
+        test/app/TestClient.hpp
+        test/app/TestDatabaseComponent.hpp
+        test/app/TestComponent.hpp
         
-        
-        
-        
-        
-               )
+         "src/controller/WorkController.hpp" "src/db/WorkDb.hpp" "src/dto/WorkDto.hpp" "src/service/WorkService.hpp" "src/service/WorkService.cpp" "test/WorkControllerTest.hpp" "test/WorkControllerTest.cpp")
 target_link_libraries(crud-test crud-lib)
 
 enable_testing()
