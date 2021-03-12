@@ -56,6 +56,10 @@ public:
             "DELETE FROM AppWork WHERE taskID=:taskID;",
             PARAM(oatpp::Int32, taskID))
 
+        QUERY(getAllWorksDueDate,
+            "SELECT * FROM AppWork WHERE taskDueDate BETWEEN date('now','localtime') AND :untilThatDate;",
+            PARAM(oatpp::String, untilThatDate))
+
 };
 
 #include OATPP_CODEGEN_END(DbClient) //<- End Codegen
