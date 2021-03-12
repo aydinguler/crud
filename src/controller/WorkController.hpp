@@ -107,8 +107,17 @@ public:
     }
 
 
+    ENDPOINT_INFO(getWorksDueDate) {
+        info->summary = "Get works within a certain date range";
 
-
+        info->addResponse<oatpp::Object<WorksPeriodDto>>(Status::CODE_200, "application/json");
+        info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+    }
+    ENDPOINT("GET", "Work/GetByPeriod/{untilThatDate}", getWorksDueDate,
+        PATH(String, untilThatDate))
+    {
+        return createDtoResponse(Status::CODE_200, m_workService.getAllWorksDueDate(untilThatDate));
+    }
 };
 
 #include OATPP_CODEGEN_BEGIN(ApiController) //<- End Codegen
