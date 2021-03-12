@@ -47,7 +47,7 @@ public:
     ENDPOINT_INFO(putWork) {
         info->summary = "Update work by workID";
 
-        info->addConsumes<Object<WorkDto>>("application/json");
+        info->addConsumes<Object<ChangeStateDto>>("application/json");
 
         info->addResponse<Object<WorkDto>>(Status::CODE_200, "application/json");
         info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
@@ -56,10 +56,8 @@ public:
         info->pathParams["workID"].description = "Work Identifier";
     }
     ENDPOINT("PUT", "Work/ChangeState/{workID}", putWork,
-        PATH(Int32, workID),
-        BODY_DTO(Object<WorkDto>, workDto))
+        BODY_DTO(Object<ChangeStateDto>, workDto))
     {
-        workDto->taskID = workID;
         return createDtoResponse(Status::CODE_200, m_workService.ChangeState(workDto));
     }
 
