@@ -5,6 +5,7 @@
 #include "dto/WorkDto.hpp"
 #include "oatpp-sqlite/orm.hpp"
 #include "dto/CreateWorkDto.hpp"
+#include "dto/ChangeStateDto.hpp"
 
 #include OATPP_CODEGEN_BEGIN(DbClient) //<- Begin Codegen
 
@@ -37,11 +38,10 @@ public:
         QUERY(ChangeState,
             "UPDATE AppWork "
             "SET "
-            " taskName=:work.taskName, "
-            " taskState=:work.taskState "
+            " taskState='True' "
             "WHERE "
             " taskID=:work.taskID;",
-            PARAM(oatpp::Object<WorkDto>, work))
+            PARAM(oatpp::Object<ChangeStateDto>, work))
 
         QUERY(getWorkById,
             "SELECT * FROM Appwork WHERE taskID=:taskID;",
