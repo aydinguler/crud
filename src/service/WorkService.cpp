@@ -1,7 +1,7 @@
 
 #include "WorkService.hpp"
 
-oatpp::Object<WorkDto> WorkService::createWork(const oatpp::Object<WorkDto>& dto) {
+oatpp::Object<WorkDto> WorkService::createWork(const oatpp::Object<CreateWorkDto>& dto) {
 
     auto dbResult = m_database->createWork(dto);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
