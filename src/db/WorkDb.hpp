@@ -4,6 +4,7 @@
 
 #include "dto/WorkDto.hpp"
 #include "oatpp-sqlite/orm.hpp"
+#include "dto/CreateWorkDto.hpp"
 
 #include OATPP_CODEGEN_BEGIN(DbClient) //<- Begin Codegen
 
@@ -29,9 +30,9 @@ public:
 
         QUERY(createWork,
             "INSERT INTO AppWork"
-            "(taskName, taskState) VALUES "
-            "(:work.taskName, :work.taskState);",
-            PARAM(oatpp::Object<WorkDto>, work))
+            "(taskName, taskState, taskCreationDate, taskDueDate) VALUES "
+            "(:work.taskName, 'False', date('now','localtime'), :work.taskDueDate);",
+            PARAM(oatpp::Object<CreateWorkDto>, work))
 
         QUERY(ChangeState,
             "UPDATE AppWork "
