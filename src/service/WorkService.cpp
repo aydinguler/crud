@@ -43,10 +43,6 @@ oatpp::Object<PageDto<oatpp::Object<WorkDto>>> WorkService::getAllWorks(const oa
 
     oatpp::UInt32 countToFetch = limit;
 
-    if (limit > 10) {
-        countToFetch = 10;
-    }
-
     auto dbResult = m_database->getAllWorks(offset, countToFetch);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
@@ -70,4 +66,20 @@ oatpp::Object<StatusDto> WorkService::deleteWorkById(const oatpp::Int32& workID)
     status->code = 200;
     status->message = "Work was successfully deleted";
     return status;
+}
+
+oatpp::Object<PeriodDto<oatpp::Object<WorkDto>>> WorkService::getAllWorksDueDate(const oatpp::String& untilThatDate) {
+
+
+    auto dbResult = m_database->getAllWorksDueDate(untilThatDate);
+    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+
+    auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<WorkDto>>>();
+
+    auto page = PeriodDto<oatpp::Object<WorkDto>>::createShared();
+    page->count = items->size();
+    page->items = items;
+
+    return page;
+
 }
