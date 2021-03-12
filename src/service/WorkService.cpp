@@ -12,11 +12,17 @@ oatpp::Object<WorkDto> WorkService::createWork(const oatpp::Object<CreateWorkDto
 
 }
 
-oatpp::Object<WorkDto> WorkService::ChangeState(const oatpp::Object<WorkDto>& dto) {
+oatpp::Object<StatusDto> WorkService::ChangeState(const oatpp::Object<ChangeStateDto>& dto) {
 
     auto dbResult = m_database->ChangeState(dto);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-    return getWorkById(dto->taskID);
+    auto workID = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
+    auto status = StatusDto::createShared();
+    status->status = "OK";
+    status->code = 200;
+    status->message = "Work status was successfully changed";
+    return status;
+
 
 }
 

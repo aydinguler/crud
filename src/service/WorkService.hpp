@@ -17,7 +17,7 @@ private:
 public:
 
 	oatpp::Object<WorkDto> createWork(const oatpp::Object<CreateWorkDto>& dto);
-	oatpp::Object<WorkDto> ChangeState(const oatpp::Object<WorkDto>& dto);
+	oatpp::Object<StatusDto> ChangeState(const oatpp::Object<ChangeStateDto>& dto);
 	oatpp::Object<WorkDto> getWorkById(const oatpp::Int32& taskID, const std::shared_ptr<oatpp::orm::Connection>& connection = nullptr);
 	oatpp::Object<PageDto<oatpp::Object<WorkDto>>> getAllWorks(const oatpp::UInt32& offset, const oatpp::UInt32& limit);
 	oatpp::Object<StatusDto> deleteWorkById(const oatpp::Int32& taskID);
