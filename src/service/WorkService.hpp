@@ -16,7 +16,7 @@ private:
 	OATPP_COMPONENT(std::shared_ptr<WorkDb>, m_database); // Inject database component
 public:
 
-	oatpp::Object<WorkDto> createWork(const oatpp::Object<WorkDto>& dto);
+	oatpp::Object<WorkDto> createWork(const oatpp::Object<CreateWorkDto>& dto);
 	oatpp::Object<WorkDto> ChangeState(const oatpp::Object<WorkDto>& dto);
 	oatpp::Object<WorkDto> getWorkById(const oatpp::Int32& taskID, const std::shared_ptr<oatpp::orm::Connection>& connection = nullptr);
 	oatpp::Object<PageDto<oatpp::Object<WorkDto>>> getAllWorks(const oatpp::UInt32& offset, const oatpp::UInt32& limit);
