@@ -31,14 +31,14 @@ public:
     ENDPOINT_INFO(createWork) {
         info->summary = "Create new work";
 
-        info->addConsumes<Object<WorkDto>>("application/json");
+        info->addConsumes<Object<CreateWorkDto>>("application/json");
 
         info->addResponse<Object<WorkDto>>(Status::CODE_200, "application/json");
         info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
         info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
     }
     ENDPOINT("POST", "Work/Add", createWork,
-        BODY_DTO(Object<WorkDto>, workDto))
+        BODY_DTO(Object<CreateWorkDto>, workDto))
     {
         return createDtoResponse(Status::CODE_200, m_workService.createWork(workDto));
     }
