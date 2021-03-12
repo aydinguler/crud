@@ -16,7 +16,7 @@ add_library(crud-lib
         src/DatabaseComponent.hpp
         src/SwaggerComponent.hpp
         src/ErrorHandler.cpp
-        src/ErrorHandler.hpp "src/controller/WorkController.hpp" "src/db/WorkDb.hpp" "src/dto/WorkDto.hpp" "src/service/WorkService.hpp" "src/service/WorkService.cpp" "test/WorkControllerTest.hpp" "test/WorkControllerTest.cpp" "src/dto/CreateWorkDto.hpp" "src/dto/ChangeStateDto.hpp")
+        src/ErrorHandler.hpp "src/controller/WorkController.hpp" "src/db/WorkDb.hpp" "src/dto/WorkDto.hpp" "src/service/WorkService.hpp" "src/service/WorkService.cpp" "test/WorkControllerTest.hpp" "test/WorkControllerTest.cpp" "src/dto/CreateWorkDto.hpp" "src/dto/ChangeStateDto.hpp" "src/dto/PeriodDto.hpp")
 
 ## include directories
 
@@ -67,7 +67,7 @@ endif()
 
 ## add executables
 
-add_executable(crud-exe src/App.cpp "src/controller/WorkController.hpp" "src/db/WorkDb.hpp" "src/dto/WorkDto.hpp" "src/service/WorkService.hpp" "src/service/WorkService.cpp" "test/WorkControllerTest.hpp" "test/WorkControllerTest.cpp" "src/dto/CreateWorkDto.hpp" "src/dto/ChangeStateDto.hpp")
+add_executable(crud-exe src/App.cpp "src/controller/WorkController.hpp" "src/db/WorkDb.hpp" "src/dto/WorkDto.hpp" "src/service/WorkService.hpp" "src/service/WorkService.cpp" "test/WorkControllerTest.hpp" "test/WorkControllerTest.cpp" "src/dto/CreateWorkDto.hpp" "src/dto/ChangeStateDto.hpp" "src/dto/PeriodDto.hpp")
 target_link_libraries(crud-exe crud-lib)
 
 add_executable(crud-test
@@ -76,7 +76,7 @@ add_executable(crud-test
         test/app/TestDatabaseComponent.hpp
         test/app/TestComponent.hpp
         
-         "src/controller/WorkController.hpp" "src/db/WorkDb.hpp" "src/dto/WorkDto.hpp" "src/service/WorkService.hpp" "src/service/WorkService.cpp" "test/WorkControllerTest.hpp" "test/WorkControllerTest.cpp" "src/dto/CreateWorkDto.hpp" "src/dto/ChangeStateDto.hpp")
+         "src/controller/WorkController.hpp" "src/db/WorkDb.hpp" "src/dto/WorkDto.hpp" "src/service/WorkService.hpp" "src/service/WorkService.cpp" "test/WorkControllerTest.hpp" "test/WorkControllerTest.cpp" "src/dto/CreateWorkDto.hpp" "src/dto/ChangeStateDto.hpp" "src/dto/PeriodDto.hpp")
 target_link_libraries(crud-test crud-lib)
 
 enable_testing()
