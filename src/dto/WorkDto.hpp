@@ -7,8 +7,8 @@
 #include OATPP_CODEGEN_BEGIN(DTO)
 
 ENUM(TaskState, v_int32,
-    VALUE(DONE, 0, "TASK_DONE"),
-    VALUE(NOT_DONE, 1, "TASK_NOT_DONE")
+    VALUE(False, 0, "False"),
+    VALUE(True, 1, "True")
 )
 
 class WorkDto : public oatpp::DTO {
@@ -18,6 +18,8 @@ class WorkDto : public oatpp::DTO {
     DTO_FIELD(Int32, taskID);
     DTO_FIELD(String, taskName, "taskName");
     DTO_FIELD(Enum<TaskState>::AsString, taskState, "taskState");
+    DTO_FIELD(String, taskDueDate, "taskDueDate");
+    DTO_FIELD(String, taskCreationDate, "taskCreationDate");
 
 };
 
